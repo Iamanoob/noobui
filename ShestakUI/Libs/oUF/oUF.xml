@@ -1,0 +1,135 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="Init.lua"/>
+	<Script file="Private.lua"/>
+	<Script file="oUF.lua"/>
+	<Script file="Events.lua"/>
+	<Script file="Factory.lua"/>
+	<Script file="Blizzard.lua"/>
+	<Script file="Units.lua"/>
+	<Script file="Colors.lua"/>
+	<Script file="Finalize.lua"/>
+
+	<Script file="Elements\Power.lua"/>
+	<Script file="Elements\Aura.lua"/>
+	<Script file="Elements\Health.lua"/>
+	<Script file="Elements\CPoints.lua"/>
+	<Script file="Elements\Anticipation.lua"/>
+	<Script file="Elements\RIcons.lua"/>
+	<Script file="Elements\Leader.lua"/>
+	<Script file="Elements\Combat.lua"/>
+	<Script file="Elements\Resting.lua"/>
+	<Script file="Elements\PvP.lua"/>
+	<Script file="Elements\Portraits.lua"/>
+	<Script file="Elements\Range.lua"/>
+	<Script file="Elements\CastBar.lua"/>
+	<Script file="Elements\Threat.lua"/>
+	<Script file="Elements\Tags.lua"/>
+	<Script file="Elements\MasterLooter.lua"/>
+	<Script file="Elements\Assistant.lua"/>
+	<Script file="Elements\RuneBar.lua"/>
+	<Script file="Elements\LFDRole.lua"/>
+	<Script file="Elements\HealPrediction.lua"/>
+	<Script file="Elements\HolyPower.lua"/>
+	<Script file="Elements\SoulShards.lua"/>
+	<Script file="Elements\ReadyCheck.lua"/>
+	<Script file="Elements\QIcon.lua"/>
+	<Script file="Elements\EclipseBar.lua"/>
+	<Script file="Elements\AltPowerBar.lua"/>
+	<Script file="Elements\Resurrect.lua"/>
+	<Script file="Elements\HarmonyOrbs.lua"/>
+	<Script file="Elements\ShadowOrbs.lua"/>
+
+	<Script file="Modules\AuraTracker.lua"/>
+	<Script file="Modules\AuraWatch.lua"/>
+	<Script file="Modules\AutoResurrect.lua"/>
+	<Script file="Modules\CombatFeedback.lua"/>
+	<Script file="Modules\CounterBar.lua"/>
+	<Script file="Modules\DebuffHighlight.lua"/>
+	<Script file="Modules\EnemySpec.lua"/>
+	<Script file="Modules\Experience.lua"/>
+	<Script file="Modules\FactionIcon.lua"/>
+	<Script file="Modules\Fader.lua"/>
+	<Script file="Modules\Friendship.lua"/>
+	<Script file="Modules\GCD.lua"/>
+	<Script file="Modules\MovableFrames.lua"/>
+	<Script file="Modules\RaidDebuffs.lua"/>
+	<Script file="Modules\RangeBar.lua"/>
+	<Script file="Modules\Reputation.lua"/>
+	<Script file="Modules\Resolve.lua"/>
+	<Script file="Modules\Smooth.lua"/>
+	<Script file="Modules\Swing.lua"/>
+	<Script file="Modules\TotemBar.lua"/>
+	<Script file="Modules\Trinkets.lua"/>
+
+	<!-- Clique Support -->
+	<Button name="oUF_ClickCastUnitTemplate" virtual="true" inherits="SecureUnitButtonTemplate,SecureHandlerEnterLeaveTemplate">
+		<Attributes>
+			<Attribute name="_onenter" type="string" value="local snippet = self:GetAttribute('clickcast_onenter'); if snippet then self:Run(snippet) end"/>
+			<Attribute name="_onleave" type="string" value="local snippet = self:GetAttribute('clickcast_onleave'); if snippet then self:Run(snippet) end"/>
+		</Attributes>
+	</Button>
+
+	<!-- Pet Battle Hider Frame -->
+	<Frame name="oUF_PetBattleFrameHider" inherits="SecureHandlerStateTemplate" parent="UIParent">
+		<Scripts>
+			<OnLoad>
+				RegisterStateDriver(self, "visibility", "[petbattle] hide; show")
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<!-- MT/MTT/MTTT Template -->
+	<Button name="oUF_MainTank" inherits="SecureUnitButtonTemplate" virtual="true">
+		<Frames>
+			<Button name="$parentTarget" inherits="SecureUnitButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="7" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Attributes>
+					<Attribute name="unitsuffix" type="string" value="target"/>
+					<Attribute name="useparent-unit" type="boolean" value="true"/>
+					<Attribute name="type1" type="string" value="target"/>
+					<Attribute name="initial-unitWatch" type="boolean" value="true"/>
+				</Attributes>
+			</Button>
+		</Frames>
+	</Button>
+	<Button name="oUF_MainTankTT" inherits="SecureUnitButtonTemplate" virtual="true">
+		<Frames>
+			<Button name="$parentTarget" inherits="SecureUnitButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="7" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Attributes>
+					<Attribute name="unitsuffix" type="string" value="target"/>
+					<Attribute name="useparent-unit" type="boolean" value="true"/>
+					<Attribute name="type1" type="string" value="target"/>
+					<Attribute name="initial-unitWatch" type="boolean" value="true"/>
+				</Attributes>
+			</Button>
+			<Button name="$parentTargetTarget" inherits="SecureUnitButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentTarget">
+						<Offset>
+							<AbsDimension x="7" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Attributes>
+					<Attribute name="unitsuffix" type="string" value="targettarget"/>
+					<Attribute name="useparent-unit" type="boolean" value="true"/>
+					<Attribute name="type1" type="string" value="targettarget"/>
+					<Attribute name="initial-unitWatch" type="boolean" value="true"/>
+				</Attributes>
+			</Button>
+		</Frames>
+	</Button>
+</Ui>
